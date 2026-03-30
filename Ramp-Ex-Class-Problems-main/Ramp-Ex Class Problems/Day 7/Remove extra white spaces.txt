@@ -1,0 +1,13 @@
+// Remove extra white spaces
+static void fun(String s){
+        boolean flag = true;
+        for(char ch : s.toCharArray()){
+            if(ch == ' ' && flag){
+                System.out.print(" ");
+                flag = false;
+            }
+            else if(ch != ' '){
+                flag = true;
+                System.out.print(ch);
+            }
+        }

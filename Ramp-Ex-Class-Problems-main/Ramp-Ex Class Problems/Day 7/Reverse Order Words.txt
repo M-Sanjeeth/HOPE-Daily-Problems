@@ -1,0 +1,30 @@
+//Reverse Order Words
+public class add {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = "    hi    hello bye ";
+        // op -> " bye hello    hi"
+        String ans = "";
+        int n = s.length();
+        int i = n-1;
+        while(i >= 0 && s.charAt(i) == ' '){
+            ans = ' ' + ans;
+            i--;
+        }
+        while(i >= 0){
+            String sub1 = new String("");
+            while(i >= 0 && s.charAt(i) != ' '){
+                sub1 = s.charAt(i) + sub1;
+                i--;
+            }
+            ans = ans + sub1;
+            String sub2 = new String("");
+            while(i >= 0 && s.charAt(i) == ' '){
+                sub2 = ' ' + sub2;
+                i--;
+            }
+            ans = ans + sub2;
+        }
+        System.out.println(ans);
+    }
+} 

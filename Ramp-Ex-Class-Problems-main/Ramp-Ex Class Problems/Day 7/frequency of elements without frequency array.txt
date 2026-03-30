@@ -1,0 +1,31 @@
+// frequency of elements without frequency array
+public class add {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = "hi hello";
+
+        int cnt = 0;
+        int n = s.length();
+        for(int i = 0; i < n ; i++){
+            //for checking if it is already seen
+            boolean duplicate = false;
+            for(int j=0 ; j < i ; j++){
+                if(s.charAt(i) == s.charAt(j)){
+                    duplicate = true;
+                    break;
+                }
+            }
+            if(duplicate){
+                continue;
+            }
+            //for counting
+            int count = 1;
+            for(int k = i+1 ; k < n ; k++){
+                if(s.charAt(i) == s.charAt(k)){
+                    count++;
+                }
+            }
+            System.out.println(s.charAt(i) + " = " + count);
+        }
+    }
+}

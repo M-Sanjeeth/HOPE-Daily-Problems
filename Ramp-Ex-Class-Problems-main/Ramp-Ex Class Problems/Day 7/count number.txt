@@ -1,0 +1,26 @@
+// Count number 
+
+import java.util.*;
+public class add {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = "  hi hello jk   ";
+        int cnt = 0;
+        int i = 0;
+        int n = s.length();
+        while(i < n && s.charAt(i) == ' '){
+            i++;
+        }
+        while(i < n){
+
+            while (i < n && s.charAt(i) != ' '){
+                i++;
+            }
+            cnt++;
+            while (i < n && s.charAt(i) == ' '){
+                i++;
+            }
+        }
+        System.out.println(cnt);
+
+    }
