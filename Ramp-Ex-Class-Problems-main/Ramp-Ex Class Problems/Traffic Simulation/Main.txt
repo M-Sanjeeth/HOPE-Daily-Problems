@@ -1,0 +1,22 @@
+public class Main {
+    public static void main(String[] args) {
+        Intersection intersection = new Intersection();
+        intersection.addVehicle(new Vehicle("V1", Direction.NORTH));
+        intersection.addVehicle(new Vehicle("V2", Direction.NORTH));
+        intersection.addVehicle(new Vehicle("V3", Direction.EAST));
+        intersection.addVehicle(new Vehicle("V4", Direction.SOUTH));
+
+        intersection.displayStatus();
+
+        intersection.setGreenSignal(Direction.NORTH);
+        intersection.processTraffic();
+        intersection.processTraffic();
+
+        intersection.setGreenSignal(Direction.EAST);
+        intersection.processTraffic();
+
+        intersection.setGreenSignal(Direction.SOUTH);
+        intersection.processTraffic();
+        intersection.displayStatus();
+    }
+}

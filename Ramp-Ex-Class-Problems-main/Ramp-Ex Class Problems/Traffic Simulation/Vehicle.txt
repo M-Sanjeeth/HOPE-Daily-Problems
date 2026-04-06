@@ -1,0 +1,17 @@
+class Vehicle{
+    String id;
+    Direction direction;
+    public Vehicle(String id, Direction direction){
+        this.id = id;
+        this.direction = direction;
+    }
+    public String getId(){
+        return id;
+    }
+    public Direction getDirection(){
+        return direction;
+    }
+    public void move(){
+        System.out.println(id + " is moving towards " + direction);
+    }
+}

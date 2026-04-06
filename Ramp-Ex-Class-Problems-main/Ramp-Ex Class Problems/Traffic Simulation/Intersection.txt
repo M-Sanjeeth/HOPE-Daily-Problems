@@ -1,0 +1,79 @@
+class Intersection {
+    Vehicle[] northLane = new Vehicle[10];
+    Vehicle[] southLane = new Vehicle[10];
+    Vehicle[] eastLane = new Vehicle[10];
+    Vehicle[] westLane = new Vehicle[10];
+    int northCount = 0;
+    int southCount = 0;
+    int eastCount = 0;
+    int westCount = 0;
+    Direction greenSignal = Direction.NORTH;
+
+    public void addVehicle(Vehicle v){
+        if(v.getDirection() == Direction.NORTH){
+            northLane[northCount++] = v;
+        }
+        else if(v. getDirection() == Direction.SOUTH){
+            southLane[southCount++] = v;
+        }
+        else if(v.getDirection() == Direction.EAST){
+            eastLane[eastCount++] = v;
+        }
+        else{
+            westLane[westCount++] = v;
+        }
+    }
+    public void setGreenSignal(Direction d){
+        greenSignal = d;
+        System.out.println("\nSignal GREEN for: " + d);
+    }
+    public void processTraffic(){
+        if(greenSignal == Direction.NORTH && northCount > 0){
+            moveVehicle(northLane, northCount);
+            northCount--;
+        }
+        else if(greenSignal == Direction.SOUTH && southCount > 0){
+            moveVehicle(southLane, southCount);
+            southCount--;
+        }
+        else if(greenSignal == Direction.EAST && eastCount > 0){
+            moveVehicle(eastLane, eastCount);
+            eastCount--;
+        }
+        else if(greenSignal == Direction.WEST && westCount > 0){
+            moveVehicle(westLane, westCount);
+            westCount--;
+        }
+        else{
+            System.out.println("No vehicles in " + greenSignal + " lane");
+        }
+    }
+    void moveVehicle(Vehicle[] lane, int count){
+        lane[0].move();
+
+        for(int i = 1; i < count; i++){
+            lane[i - 1] = lane[i];
+        }
+        lane[count - 1] = null;
+    }
+    void displayStatus(){
+        System.out.println("\nLane Status");
+        printLane("NORTH", northLane, northCount);
+        printLane("SOUTH", southLane, southCount);
+        printLane("EAST", eastLane, eastCount);
+        printLane("WEST", westLane, westCount);
+    }
+    void printLane(String name, Vehicle[] lane, int count){
+        System.out.print(name + ": ");
+        if(count == 0){
+            System.out.println("Empty");
+            return;
+        }
+        for(int i = 0; i < count; i++){
+            System.out.print(lane[i].getId() + " ");
+        }
+        System.out.println();
+    }
+}
+enum Direction {
+    NORTH, SOUTH, EAST, WEST
