@@ -1,0 +1,78 @@
+//Day 10
+
+import java.util.*;
+public class Ride {
+
+    String name ;
+    String pickup;
+    String drop;
+    List<String> stop;
+    double fare;
+    String status;
+
+    Ride(String name, String pickup, String drop){
+        this.name = name;
+        this.pickup = pickup;
+        this.drop = drop;
+        stop = new ArrayList<>();
+        fare = calculation();
+        status = "booked";
+    }
+
+    Ride(String name, String pickup, String drop, List<String> stop){
+        this.name = name;
+        this.pickup = pickup;
+        this.drop = drop;
+        this.stop = stop;
+        fare = calculation();
+        status = "booked";
+    }
+
+    double calculation(){
+        return 50 + stop.size()*50;
+    }
+
+    void cancelRide(){
+        if(this.status.equals("cancelled")){
+            System.out.println("Already cancelled");
+        }
+        else if(this.status.equals("completed")){
+            System.out.println("Completed Ride can't cancel");
+        }
+        else{
+            this.status = "cancelled";
+            this.fare = 0;
+            System.out.println("Successfully cancelled");
+        }
+    }
+    void completeRide(){
+        if(this.status.equals("cancelled")){
+            System.out.println("It is already cancelled can't complete");
+        }
+        else if(this.status.equals("completed")){
+            System.out.println("Already completed ");
+        }
+        else{
+            this.status = "completed";
+            System.out.println("Ride has been successfully completed ");
+        }
+    }
+    void showDetails(){
+        System.out.println("Customer " + this.name);
+        System.out.println("Pickup : " + this.pickup);
+        for(String s : stop){
+            System.out.println(" --> " + s);
+        }
+        System.out.println("Drop Location : " + this.drop);
+        System.out.println("Fare = " + this.fare);
+        System.out.println("Status : " + this.status);
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Ride r1 = new Ride("San", "Thiruvanmiyur", "Guindy");
+        r1.showDetails();
+    }
+}

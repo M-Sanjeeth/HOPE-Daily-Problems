@@ -1,0 +1,62 @@
+// DAY 8
+
+
+// zigzag-conversion
+
+class Solution {
+    public String convert(String s, int numRows) {
+
+        int n = s.length();
+        if(n == 1)
+            return s;
+        int R = numRows;
+        if(R == 1){
+            return s;
+        }
+        int C = n;
+        char[][] matrix = new char[R][n];
+        int i = 0;
+        int row = 0;
+        int col = 0;
+        String dirn = "down";
+        while(i < n) {
+            if(dirn == "down"){
+                if(row == R-1){
+                    matrix[row][col] = s.charAt(i);
+                    row--;
+                    col++;
+                    dirn = "upDiagonal";
+                }
+                else{
+                    matrix[row][col] = s.charAt(i);
+                    row++;
+                }
+            }
+            else if(dirn == "upDiagonal"){
+                if(row == 0){
+                    matrix[row][col] = s.charAt(i);
+                    row++;
+                    dirn = "down";
+                }
+                else{
+                    matrix[row][col] = s.charAt(i);
+                    row--;
+                    col++;
+                }
+            }
+            i++;
+        }
+        StringBuilder ans = new StringBuilder();
+        int j;
+        for(i = 0 ; i < R ; i++){
+            for(j = 0 ; j < C ; j++){
+                if(matrix[i][j] != '\0'){
+                    ans.append(matrix[i][j]);
+                }
+            }
+        }
+        return ans.toString();
+    }
+}
+
+

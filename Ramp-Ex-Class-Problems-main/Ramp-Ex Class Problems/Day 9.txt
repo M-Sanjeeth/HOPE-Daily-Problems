@@ -1,0 +1,34 @@
+//Day 9 Test Q
+// Leetcode longest binary subarray with (no. of ones == no. of zeros + 1) 
+
+public class Main {
+        public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] nums = {1,0,0,0,1,0,1,0,1};
+        int n = nums.length;
+        int s = 0;
+        int e = 0;
+        int ansSize = 0;
+        for (int i = 0; i < n ; i++){
+            int size = 0;
+            int ones = 0;
+            int zeros = 0;
+//            {1,0,0,0,1,0,1,0,1} ans = {1,0,1,0,1}
+            for(int j=i ; j < n ;j++){
+                if(nums[j] == 1)
+                    ones++;
+                else zeros++;
+                if(ones == zeros + 1 && size > ansSize){
+                    ansSize = size;
+                    s = i;
+                    e = j;
+                }
+                size++;
+            }
+        }
+        System.out.println("Start " + s + " End " + e);
+        for(int i = s ; i <= e ; i++){
+            System.out.print(nums[i]);
+        }
+    }
+}
